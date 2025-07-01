@@ -1,0 +1,35 @@
+{% extends 'webapp/base.html' %}
+{%load crispy_forms_tags %}
+{% block content %}
+
+<h2 class="text-center">Post a Job</h2>
+<div class="container bg-light shadow-md p-5 form-layout">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.company_name|as_crispy_field}}
+
+        <br>
+        {{form.title|as_crispy_field}}
+
+        <br>
+        {{form.description|as_crispy_field}}
+
+        <br>
+        {{form.salary_package|as_crispy_field}}
+
+        <br>
+        {{form.location|as_crispy_field}}
+
+        <br>
+        {{form.experience_required|as_crispy_field}}
+
+        <br>
+
+        {{form.skills_required|as_crispy_field}}
+
+        <br>
+        <button type="submit" class="btn btn-primary mt-3">Post JOB</button>
+    </form>
+</div>
+
+{% endblock %}

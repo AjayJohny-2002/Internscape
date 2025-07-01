@@ -1,0 +1,61 @@
+{% extends 'webapp/base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Applications for: "{{ job.title }}" at {{ job.company_name }}</h2>
+    <div>
+
+        <a href="{% url 'export-applications' job.id %}" class="btn btn-success">
+            <i class="fa fa-file-excel"></i> Export to Excel
+        </a>
+        
+        <a href="{% url 'job-postings' %}" class="btn btn-secondary">
+            <i class="fa fa-arrow-left"></i> Back to Job Postings
+        </a>
+        
+    </div>
+</div>
+
+<br>
+
+{% if job.applications.all %}
+    <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Candidate Name</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Cover Letter</th>
+                    <th scope="col">Applied On</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for app in job.applications.all %}
+                    <tr>
+                        <td>{{ app.name }}</td>
+                        <td>{{ app.phone_number }}</td>
+                        <td>{{ app.email }}</td>
+                        <td>
+                            {% if app.cover_letter_file %}
+                                <a href="{{ app.cover_letter_file.url }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-info">
+                                    <i class="fa fa-download"></i> Download
+                                </a>
+                            {% else %}
+                                N/A
+                            {% endif %}
+                        </td>
+                        <td>{{ app.applied_at|date:"F d, Y P" }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <div class="alert alert-info" role="alert">
+        No applications received for this job yet.
+    </div>
+{% endif %}
+
+{% endblock %}

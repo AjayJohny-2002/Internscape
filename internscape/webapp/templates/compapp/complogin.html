@@ -1,0 +1,106 @@
+{% extends 'webapp/base.html' %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    .login-container {
+        max-width: 500px;
+        margin: 5rem auto;
+        padding: 2.5rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        background: white;
+        border-top: 5px solid #4361ee;
+    }
+    .form-layout input {
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+    }
+    .login-btn {
+        background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+        color: white;
+        border: none;
+        padding: 12px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+    }
+    .login-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(58, 12, 163, 0.3);
+    }
+    .login-header {
+        color: #4361ee;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+    .divider {
+        display: flex;
+        align-items: center;
+        margin: 1.5rem 0;
+    }
+    .divider::before, .divider::after {
+        content: "";
+        flex: 1;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    .divider-text {
+        padding: 0 1rem;
+        color: #6c757d;
+        font-size: 0.9rem;
+    }
+    .register-link {
+        color: #4361ee;
+        font-weight: 600;
+        transition: all 0.2s;
+    }
+    .register-link:hover {
+        color: #3a0ca3;
+        text-decoration: underline;
+    }
+</style>
+
+<body class="bg-light">
+
+    <div class="login-container">
+        <div class="text-center mb-4">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" height="100" class="mb-3">
+            <h3 class="login-header">Login to your Company account</h3>
+        </div>
+        
+        <form method="POST" autocomplete="off">
+            {% csrf_token %}
+            
+            <div class="mb-3">
+                {{ form.username|as_crispy_field }}
+            </div>
+            
+            <div class="mb-4">
+                {{ form.password|as_crispy_field }}
+            </div>
+            
+            <button type="submit" class="btn login-btn w-100 btn-block">
+                Login &nbsp; <i class="fas fa-key"></i>
+            </button>
+            
+            <div class="divider">
+                <span class="divider-text">OR</span>
+            </div>
+            
+            <div class="text-center mt-3">
+                <p class="mb-2">Don't have an account?</p>
+                <a href="{% url 'company-register' %}" class="register-link">
+                    Company Register <i class="fas fa-arrow-right ms-1"></i>
+                </a>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+{% endblock %}

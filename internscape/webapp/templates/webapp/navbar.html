@@ -1,0 +1,80 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary justify-content-center">
+  
+                &nbsp; 
+                &nbsp;
+    <a class="navbar-brand main-heading" href="{% if user.is_authenticated %}{% if user.profile.user_type == 'candidate' %}{% url 'dashboard' %}{% elif user.profile.user_type == 'company' %}{% url 'company-dashboard' %}{% endif %}{% else %}{% url '' %}{% endif %}"> 
+        <img src="{% static 'images/logo.png' %}" alt="Internscape Logo" class="d-inline-block align-top" style="height: 80px;">
+    </a>
+  
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    {% if user.is_authenticated %}
+        {% if user.profile.user_type == 'candidate' %}
+        <div class="collapse navbar-collapse text-center" id="navbarNavDropdown">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="btn bg-white rounded-pill text-dark border border-dark custom-hover" href="{% url 'view-jobs' %}">View Jobs <i class="fa fa-briefcase" aria-hidden="true"></i> </a>
+                </li>
+                &nbsp; 
+                &nbsp;
+                <li class="nav-item">
+                    <a class="btn bg-white rounded-pill text-dark border border-dark custom-hover" href="{% url 'user-logout' %}">Logout (Candidate) <i class="fa fa-sign-out" aria-hidden="true"></i> </a>
+                </li>
+            </ul>
+        </div>
+        {% elif user.profile.user_type == 'company' %}
+        <div class="collapse navbar-collapse text-center" id="navbarNavDropdown">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="btn bg-white rounded-pill text-dark border border-dark custom-hover" href="{% url 'post-job' %}">Post Jobs &nbsp; <i class="fa fa-briefcase" aria-hidden="true"></i> </a>
+                </li>
+                &nbsp; 
+                &nbsp;
+                <li class="nav-item">
+                    <a class="btn bg-white rounded-pill text-dark border border-dark custom-hover" href="{% url 'job-postings' %}">Responses &nbsp; <i class="fa fa-file" aria-hidden="true"></i> </a>
+                </li>
+                &nbsp; 
+                &nbsp;
+                <li class="nav-item">
+                    <a class="btn bg-white rounded-pill text-dark border border-dark custom-hover" href="{% url 'user-logout' %}">Logout (Company) <i class="fa fa-sign-out" aria-hidden="true"></i> </a>
+                </li>
+            </ul>
+        </div> 
+        {% endif %}
+    {% else %}
+        <div class="collapse navbar-collapse text-center" id="navbarNavDropdown">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="btn bg-white rounded-pill text-dark border border-dark custom-hover" href="{% url 'register' %}">Register <i class="fa fa-user-plus" aria-hidden="true"></i> </a>
+                </li>
+                &nbsp; 
+                &nbsp;
+                <li class="nav-item">
+                    <a class="btn bg-white rounded-pill text-dark border border-dark custom-hover" href="{% url 'my-login' %}">Login <i class="fa fa-key" aria-hidden="true"></i> </a>
+                </li>
+                &nbsp; 
+                &nbsp;
+                <li class="nav-item">
+                    <a class="btn bg-white rounded-pill text-dark border border-dark custom-hover" href="{% url 'company-register' %}">Company Register <i class="fa fa-user-plus" aria-hidden="true"></i> </a>
+                </li>
+                &nbsp; 
+                &nbsp;
+                <li class="nav-item">
+                    <a class="btn bg-white rounded-pill text-dark border border-dark custom-hover" href="{% url 'company-login' %}">Company Login <i class="fa fa-key" aria-hidden="true"></i> </a>
+                </li>
+            </ul>
+        </div>
+    {% endif %}
+</nav>

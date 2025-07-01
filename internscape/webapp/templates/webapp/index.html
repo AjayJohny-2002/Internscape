@@ -1,0 +1,55 @@
+{% extends 'webapp/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+
+<body>
+      <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-auto text-center">
+                <img src="{% static 'images/homepge.png' %}" alt="Internship Platform" class="img-fluid mb-5">
+            </div>
+        </div>
+
+        <div class="row justify-content-center g-4">
+            <!-- Fully Yellow Card -->
+            <div class="col-md-5">
+                <div class="card feature-card yellow-card p-4">
+                    <div class="card-body text-center">
+                        <i class="fas fa-graduation-cap card-icon"></i>
+                        <h3 class="card-title">Find Your Dream Internship</h3>
+                        <p class="card-text">
+                            Connect with top companies and discover opportunities that match your skills and career goals.
+                        </p>
+                        <a href="{% url 'register' %}" class="btn rounded-pill px-4">
+                            Get Started <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- White Card with Yellow Accents -->
+            <div class="col-md-5">
+                <div class="card feature-card white-card p-4">
+                    <div class="card-body text-center">
+                        <i class="fas fa-building card-icon"></i>
+                        <h3 class="card-title">For Employers</h3>
+                        <p class="card-text">
+                            Find talented interns who can bring fresh perspectives to your organization.
+                        </p>
+                        <a href="{% url 'company-register' %}" class="btn rounded-pill px-4">
+                            Company Register <i class="fas fa-briefcase ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+</body>
+
+{% endblock %}

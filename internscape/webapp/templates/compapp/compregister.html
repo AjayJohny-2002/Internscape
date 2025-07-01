@@ -1,0 +1,121 @@
+{% extends 'webapp/base.html' %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    .company-register-container {
+        max-width: 500px;
+        margin: 5rem auto;
+        padding: 2.5rem;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        background: white;
+        border-top: 5px solid #2563eb;
+    }
+    .form-layout input {
+        padding: 12px 15px;
+        border-radius: 8px;
+        border: 1px solid #e2e8f0;
+        transition: all 0.3s ease;
+    }
+    .form-layout input:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    .register-btn {
+        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        color: white;
+        border: none;
+        padding: 14px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+    .register-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(29, 78, 216, 0.2);
+        background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+    }
+    .company-register-header {
+        color: #2563eb;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        text-align: center;
+        font-size: 1.8rem;
+    }
+    .company-register-subheader {
+        color: #3b82f6;
+        text-align: center;
+        margin-bottom: 2rem;
+        font-weight: 500;
+    }
+    .login-link {
+        color: #2563eb;
+        font-weight: 600;
+        transition: all 0.2s;
+    }
+    .login-link:hover {
+        color: #1d4ed8;
+        text-decoration: underline;
+    }
+    .divider {
+        display: flex;
+        align-items: center;
+        margin: 1.8rem 0;
+        color: #94a3b8;
+    }
+    .divider::before, .divider::after {
+        content: "";
+        flex: 1;
+        border-bottom: 1px solid #e2e8f0;
+    }
+</style>
+
+<body class="bg-gray-50">
+
+    <div class="company-register-container">
+        <div class="text-center mb-5">
+            <img src="{% static 'images/logo.png' %}" alt="Company Icon" height="70" class="mb-3">
+            <h3 class="company-register-header">Create your Company Account</h3>
+            <h5 class="company-register-subheader">Let's find the talents</h5>
+        </div>
+        
+        <form method="POST" autocomplete="off">
+            {% csrf_token %}
+            
+            <div class="mb-4">
+                {{ form.username|as_crispy_field }}
+            </div>
+            
+            <div class="mb-4">
+                {{ form.password1|as_crispy_field }}
+            </div>
+            
+            <div class="mb-5">
+                {{ form.password2|as_crispy_field }}
+            </div>
+            
+            <button type="submit" class="btn register-btn w-100 btn-block mb-4">
+                Create Company Account &nbsp; <i class="fas fa-building"></i>
+            </button>
+            
+            <div class="divider">
+                <span class="px-2">OR</span>
+            </div>
+            
+            <div class="text-center mt-3">
+                <p class="mb-2 text-gray-600">Already have an account?</p>
+                <a href="{% url 'company-login' %}" class="login-link">
+                    Company Login &nbsp; <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+{% endblock %}

@@ -1,0 +1,71 @@
+
+
+.form-layout{
+
+    border-radius: 15px;
+    width: 500px;
+    
+}
+
+
+.message-text{
+    color : white;
+}
+
+
+
+
+
+.custom-hover:hover {
+  background-color: #e3d40c !important; /* Light gray */
+  border-color: #ffffff !important; /* Darker border on hover (optional) */
+  transform: translateY(-4px); /* Slight lift (optional) */
+  transition: all 0.2s ease; /* Smooth animation */
+}
+
+.feature-card {
+        border-radius: 15px;
+        transition: all 0.3s ease;
+        height: 100%;
+        border: none;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+    .card-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    /* Yellow card styling */
+    .yellow-card {
+        background-color: #FFD700; /* Bright yellow */
+        color: #000; /* Black text for contrast */
+    }
+    .yellow-card .card-icon {
+        color: #000; /* Black icon */
+    }
+    .yellow-card .btn {
+        background-color: #000;
+        color: #FFD700;
+        border: none;
+    }
+    /* White card with yellow accents */
+    .white-card {
+        background-color: #ffffff;
+        border: 2px solid #FFD700; /* Yellow border */
+    }
+    .white-card .card-icon {
+        color: #FFD700; /* Yellow icon */
+    }
+    .white-card .btn {
+        background-color: #FFD700;
+        color: #000;
+        border: none;
+    }
+    .white-card .btn:hover {
+        background-color: #e6c200;
+    }
+
+    
